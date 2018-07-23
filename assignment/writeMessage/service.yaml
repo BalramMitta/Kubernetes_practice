@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: writefile-service
+spec:
+  ports:
+    - name: http
+      port: 5200
+      targetPort: 5200
+  selector:
+    app: writefile-container
+  type: LoadBalancer

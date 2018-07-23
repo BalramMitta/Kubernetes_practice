@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: readfile-service
+spec:
+  ports:
+    - name: http
+      port: 5100
+      targetPort: 5100
+  selector:
+    app: readfile-container
+  type: LoadBalancer

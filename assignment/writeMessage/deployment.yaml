@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: writefile-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: writefile-container
+    spec:
+      volumes:
+      - name: test-storage
+        persistentVolumeClaim:
+         claimName: test-claim
+      containers:
+      - name: writefile-container
+        image: balram2496/writefile
+        volumeMounts:
+        - mountPath: /readwrite
+          name: test-storage
