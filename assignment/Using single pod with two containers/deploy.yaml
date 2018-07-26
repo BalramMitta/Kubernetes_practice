@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: rw-deploy
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rw-containers
+    spec:
+      volumes:
+      - name: shared-data
+        emptyDir: {}
+
+      containers:
+
+      - name: r-container
+        image: balram2496/readfile
+        volumeMounts:
+        - name: shared-data
+          mountPath: /readwrite
+
+      - name: w-container
+        image: balram2496/writefile
+        volumeMounts:
+        - name: shared-data
+          mountPath: /readwrite
+

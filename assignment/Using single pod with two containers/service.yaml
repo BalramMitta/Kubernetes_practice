@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rw-service
+spec:
+  ports:
+    - name: read
+      port: 5100
+      targetPort: 5100
+    - name: write
+      port: 5200
+      targetPort: 5200
+  selector:
+    app: rw-containers
+  type: LoadBalancer
